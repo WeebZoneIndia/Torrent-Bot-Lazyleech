@@ -70,6 +70,9 @@ deletewatermark
 testwatermark
 ```
 
-## Credits 
+## Credits 📍
 
-**Author** - [@TheKneesocks](https://t.me/TheKneesocks)
+[@TheKneesocks](https://t.me/TheKneesocks)
+
+
+### [Demo](https://t.me/joinchat/HC7YmklXMSRPH3N2)
