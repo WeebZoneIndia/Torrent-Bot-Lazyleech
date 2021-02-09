@@ -5,7 +5,7 @@
 # LazyLeech 
 
 <p align="center">
-“	Telegram Torrent Bot ” 
+“	Telegram Torrent Leeching Bot ” 
 </p>
 
 # What is this repo about?
