@@ -11,7 +11,7 @@
 # What is this repo about?
 This is a telegram bot writen with pyrogram for leeching files on the internet to Telegram.
 
-# [Bot Demo](https://t.me/joinchat/HC7YmklXMSRPH3N2)
+[Bot Demo](https://t.me/joinchat/HC7YmklXMSRPH3N2)
 
 # Features
 - Leeching direct download links | Torrent | Magnets.
