@@ -8,6 +8,15 @@
 “	Telegram Torrent Leeching Bot by Some Weebs ” 
 </p>
 
+# Table of Content
+- [WHAT IS THIS REPO ABOUT ?](#what-is-this-repo-about)
+- [FEATURES](#features)
+- [BOT COMMANDS](#bot-commands)
+- [TEST THE BOT (DEMO)](https://t.me/joinchat/HC7YmklXMSRPH3N2)
+- [CREDITS](#credits-)
+- [POINTS TO BE NOTED](#points-to-be-noted)
+
+
 # What is this repo about?
 This is a telegram bot writen with pyrogram for leeching files on the internet to Telegram.
 
