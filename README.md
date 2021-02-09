@@ -26,7 +26,7 @@ This is a telegram bot writen with pyrogram for leeching files on the internet t
 
 ## **Zeet**
 According to me, this platform provides resources that are enough for a genuine user and by default prevents Abuse:
-Click the logo to read the guide to see how to deploy.
+Click the logo to read the guide to read how to deploy.
 
 [![Deploy](https://telegra.ph/file/27250013bd3c7777f09d1.jpg)](https://youtu.be/WWi9JWDzXSw)
 
