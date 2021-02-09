@@ -5,7 +5,7 @@
 # LazyLeech 
 
 <p align="center">
-“	Telegram Torrent Leeching Bot ” 
+“	Telegram Torrent Leeching Bot by Some Weebs ” 
 </p>
 
 # What is this repo about?
@@ -21,14 +21,6 @@ This is a telegram bot writen with pyrogram for leeching files on the internet t
 - Upload as zip, streamable, document.
 - Can List All your Ongoing Leeches.
 - Docker support.
-
-# Deployment 
-
-## **Zeet**
-According to me, this platform provides resources that are enough for a genuine user and by default prevents Abuse:
-Click the logo to read the guide to read how to deploy.
-
-[![Deploy](https://telegra.ph/file/27250013bd3c7777f09d1.jpg)](https://youtu.be/WWi9JWDzXSw)
 
 ## Bot Commands
 
@@ -84,4 +76,10 @@ testwatermark
 
 [@TheKneesocks](https://t.me/TheKneesocks)
 
+## Points To Be Noted 
 
+- This repo is fork of [Anime Leeching Group](https://t.me/joinchat/BWHQ6lb_FmSP3pxfyYolfg) Bot Leafa-chan.
+- I dont own this repo, I have just Uploaded this code on github.
+- This Repo is meant for small groups.
+- Heroku Not Supported.
+- This Repo is licenced under [AGPL](https://github.com/ShinchanNohara1/Torrent-Bot-Lazyleech/blob/Master/LICENSE) that means you have to share this repo if anyone ask.
