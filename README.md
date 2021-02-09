@@ -28,7 +28,7 @@ This is a telegram bot writen with pyrogram for leeching files on the internet t
 According to me, this platform provides resources that are enough for a genuine user and by default prevents Abuse:
 Click the logo to read the guide to see how to deploy.
 
-[![Deploy](https://telegra.ph/file/a81a05cc874e8636ddb86.png)](https://youtu.be/WWi9JWDzXSw)
+[![Deploy](https://telegra.ph/file/27250013bd3c7777f09d1.jpg)](https://youtu.be/WWi9JWDzXSw)
 
 ## Bot Commands
 
