@@ -20,9 +20,6 @@ This is a telegram bot writen with pyrogram for leeching files on the internet t
 - Can List All your Ongoing Leeches.
 - Docker support.
 
-
-**Please Join Our Support Chat On Telegram:** [𝗦𝗨𝗣𝗣𝗢𝗥𝗧 𝗚𝗥𝗢𝗨𝗣](https://t.me/joinchat/HC7YmklXMSRPH3N2)
-
 ## Bot Commands
 
 **Leech Module**
