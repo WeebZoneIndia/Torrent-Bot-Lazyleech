@@ -69,3 +69,7 @@ delwatermark
 deletewatermark
 testwatermark
 ```
+
+## Credits 
+
+**Author** - [@TheKneesocks](https://t.me/TheKneesocks)
