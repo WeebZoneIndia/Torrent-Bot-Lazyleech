@@ -25,6 +25,7 @@ This is a telegram bot writen with pyrogram for leeching files on the internet t
 
 ## Bot Commands
 
+**Leech Module**
 ```
 help - get help message.
 torrent <Torrent URL or File> or as reply to a Torrent URL or file
