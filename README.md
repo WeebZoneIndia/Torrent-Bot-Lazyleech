@@ -75,4 +75,4 @@ testwatermark
 [@TheKneesocks](https://t.me/TheKneesocks)
 
 
-### [Demo](https://t.me/joinchat/HC7YmklXMSRPH3N2)
+### [Bot Demo](https://t.me/joinchat/HC7YmklXMSRPH3N2)
