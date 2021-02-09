@@ -5,5 +5,5 @@
 # LazyLeech 
 
 <p align="center">
-“	Torrent Bot ” 
+“	Telegram Torrent Bot ” 
 </p>
