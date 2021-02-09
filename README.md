@@ -39,6 +39,36 @@ zipdirectdl <Direct URL> or as reply to a Direct URL | optional custom file name
 zipdirect <Direct URL> or as reply to a Direct URL | optional custom file name
 filedirectdl <Direct URL> or as reply to a Direct URL | optional custom file name - Sends videos as files
 filedirect <Direct URL> or as reply to a Direct URL | optional custom file name - Sends videos as files
-cancel <GID> or as reply to status message
+cancel - <GID> or as reply to status message
 list - Lists your Ongoing Leeches.
+```
+
+**Other Modules**
+```
+help - to get organised help message
+
+ts - [search query]
+nyaa - [search query]
+nyaasi - [search query]
+sts - [search query]
+sukebei - [search query]
+
+thumbnail <as reply to image or as a caption>
+setthumbnail <as reply to image or as a caption>
+savethumbnail <as reply to image or as a caption>
+clearthumbnail
+rmthumbnail
+removethumbnail
+delthumbnail
+deletethumbnail
+
+watermark <as reply to image or as a caption>
+setwatermark <as reply to image or as a caption>
+savewatermark <as reply to image or as a caption>
+clearwatermark
+rmwatermark
+removewatermark
+delwatermark
+deletewatermark
+testwatermark
 ```
