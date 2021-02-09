@@ -3,3 +3,7 @@
 </p>
 
 # LazyLeech 
+
+<p align="center">
+“	Torrent Bot ” 
+</p>
