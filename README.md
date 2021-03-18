@@ -20,7 +20,7 @@
 # What is this repo about?
 This is a telegram bot writen with pyrogram for leeching files on the internet to Telegram.
 
-[Bot Demo](https://t.me/joinchat/HC7YmklXMSRPH3N2)
+[Bot Demo](https://t.me/joinchat/icfX8YRi4yIwYTE1)
 
 # Features
 - Leeching direct download links | Torrent | Magnets.
@@ -90,5 +90,5 @@ testwatermark
 - This repo is fork of [Anime Leeching Group](https://t.me/joinchat/BWHQ6lb_FmSP3pxfyYolfg) Bot Leafa-chan.
 - I dont own this repo, I have just Uploaded this code on github.
 - This Repo is meant for small groups.
-- Heroku Not Supported.
+- This repo is not meant to deploy in Heroku.
 - This Repo is licenced under [AGPL](https://github.com/ShinchanNohara1/Torrent-Bot-Lazyleech/blob/Master/LICENSE) that means you have to share this repo if anyone ask.
