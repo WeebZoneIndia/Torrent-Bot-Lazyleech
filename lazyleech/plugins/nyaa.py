@@ -1,3 +1,19 @@
+# lazyleech - Telegram bot primarily to leech from torrents and upload to Telegram
+# Copyright (c) 2021 lazyleech developers <theblankx protonmail com, meliodas_bot protonmail com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import time
 import html
 import asyncio
@@ -55,14 +71,14 @@ async def return_search(query, page=1, sukebei=False):
 
 message_info = dict()
 ignore = set()
-@Client.on_message(filters.command(['ts', 'nyaa', 'nyaasi']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['ts', 'nyaa', 'nyaasi']))
 async def nyaa_search(client, message):
     text = message.text.split(' ')
     text.pop(0)
     query = ' '.join(text)
     await init_search(client, message, query, False)
 
-@Client.on_message(filters.command(['sts', 'sukebei']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['sts', 'sukebei']))
 async def nyaa_search_sukebei(client, message):
     text = message.text.split(' ')
     text.pop(0)
@@ -82,7 +98,7 @@ async def init_search(client, message, query, sukebei):
         ]))
         message_info[(reply.chat.id, reply.message_id)] = message.from_user.id, ttl, query, 1, pages, sukebei
 
-@Client.on_callback_query(custom_filters.callback_data('nyaa_nop') & filters.chat(ALL_CHATS))
+@Client.on_callback_query(custom_filters.callback_data('nyaa_nop'))
 async def nyaa_nop(client, callback_query):
     await callback_query.answer(cache_time=3600)
 

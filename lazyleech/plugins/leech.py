@@ -1,3 +1,19 @@
+# lazyleech - Telegram bot primarily to leech from torrents and upload to Telegram
+# Copyright (c) 2021 lazyleech developers <theblankx protonmail com, meliodas_bot protonmail com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import os
 import time
 import html
@@ -8,7 +24,7 @@ from pyrogram import Client, filters
 from pyrogram.parser import html as pyrogram_html
 from .. import ADMIN_CHATS, ALL_CHATS, PROGRESS_UPDATE_DELAY, session, help_dict, LEECH_TIMEOUT, MAGNET_TIMEOUT, SendAsZipFlag, ForceDocumentFlag
 from ..utils.aria2 import aria2_add_torrent, aria2_tell_status, aria2_remove, aria2_add_magnet, Aria2Error, aria2_tell_active, is_gid_owner, aria2_add_directdl
-from ..utils.misc import format_bytes, get_file_mimetype, return_progress_string, calculate_eta
+from ..utils.misc import format_bytes, get_file_mimetype, return_progress_string, calculate_eta, allow_admin_cancel
 from ..utils.upload_worker import upload_queue, upload_statuses, progress_callback_data, upload_waits, stop_uploads
 
 @Client.on_message(filters.command(['torrent', 'ziptorrent', 'filetorrent']) & filters.chat(ALL_CHATS))
@@ -269,26 +285,25 @@ async def list_leeches(client, message):
     quote = None
     parser = pyrogram_html.HTML(client)
     for i in await aria2_tell_active(session):
-        if message.chat.id in ADMIN_CHATS or is_gid_owner(user_id, i['gid']):
-            if i.get('bittorrent'):
-                info = i['bittorrent'].get('info')
-                if not info:
-                    continue
-                tor_name = info['name']
-            else:
-                tor_name = os.path.basename(i['files'][0]['path'])
-                if not tor_name:
-                    tor_name = urldecode(os.path.basename(urlparse(i['files'][0]['uris'][0]['uri']).path))
-            a = f'''<b>{html.escape(tor_name)}</b>
+        if i.get('bittorrent'):
+            info = i['bittorrent'].get('info')
+            if not info:
+                continue
+            tor_name = info['name']
+        else:
+            tor_name = os.path.basename(i['files'][0]['path'])
+            if not tor_name:
+                tor_name = urldecode(os.path.basename(urlparse(i['files'][0]['uris'][0]['uri']).path))
+        a = f'''<b>{html.escape(tor_name)}</b>
 <code>{i['gid']}</code>\n\n'''
-            futtext = text + a
-            if len((await parser.parse(futtext))['message']) > 4096:
-                await message.reply_text(text, quote=quote)
-                quote = False
-                futtext = a
-            text = futtext
+        futtext = text + a
+        if len((await parser.parse(futtext))['message']) > 4096:
+            await message.reply_text(text, quote=quote)
+            quote = False
+            futtext = a
+        text = futtext
     if not text:
-        text = 'No leeches by you found.'
+        text = 'No leeches found.'
     await message.reply_text(text, quote=quote)
 
 @Client.on_message(filters.command('cancel') & filters.chat(ALL_CHATS))
@@ -305,14 +320,14 @@ async def cancel_leech(client, message):
         task = upload_statuses.get(reply_identifier)
         if task:
             task, starter_id = task
-            if message.chat.id not in ADMIN_CHATS and user_id != starter_id:
+            if user_id != starter_id and not await allow_admin_cancel(message.chat.id, user_id):
                 await message.reply_text('You did not start this leech.')
             else:
                 task.cancel()
             return
         result = progress_callback_data.get(reply_identifier)
         if result:
-            if message.chat.id not in ADMIN_CHATS and user_id != result[3]:
+            if user_id != result[3] and not await allow_admin_cancel(message.chat.id, user_id):
                 await message.reply_text('You did not start this leech.')
             else:
                 stop_uploads.add(reply_identifier)
@@ -320,7 +335,7 @@ async def cancel_leech(client, message):
             return
         starter_id = upload_waits.get(reply_identifier)
         if starter_id:
-            if message.chat.id not in ADMIN_CHATS and user_id != starter_id[0]:
+            if user_id != starter_id[0] and not await allow_admin_cancel(message.chat.id, user_id):
                 await message.reply_text('You did not start this leech.')
             else:
                 stop_uploads.add(reply_identifier)
@@ -332,7 +347,7 @@ async def cancel_leech(client, message):
 /cancel <i>&lt;GID&gt;</i>
 /cancel <i>(as reply to status message)</i>''')
         return
-    if message.chat.id not in ADMIN_CHATS and not is_gid_owner(user_id, gid):
+    if not is_gid_owner(user_id, gid) and not await allow_admin_cancel(message.chat.id, user_id):
         await message.reply_text('You did not start this leech.')
         return
     await aria2_remove(session, gid)
@@ -374,4 +389,4 @@ help_dict['leech'] = ('Leech',
 /cancel <i>&lt;GID&gt;</i>
 /cancel <i>(as reply to status message)</i>
 
-/list - Lists YOUR leeches''')
+/list - Lists all current leeches''')
