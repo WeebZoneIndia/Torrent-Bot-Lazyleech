@@ -70,10 +70,8 @@ async def torrent_cmd(client, message):
         await message.reply_text('''Usage:
 - /torrent <i>&lt;Torrent URL or File&gt;</i>
 - /torrent <i>(as reply to a Torrent URL or file)</i>
-
 - /ziptorrent <i>&lt;Torrent URL or File&gt;</i>
 - /ziptorrent <i>(as reply to a Torrent URL or File)</i>
-
 - /filetorrent <i>&lt;Torrent URL or File&gt;</i> - Sends videos as files
 - /filetorrent <i>(as reply to a Torrent URL or file)</i> - Sends videos as files''')
         return
@@ -113,10 +111,8 @@ async def magnet_cmd(client, message):
         await message.reply_text('''Usage:
 - /magnet <i>&lt;Magnet URL&gt;</i>
 - /magnet <i>(as reply to a Magnet URL)</i>
-
 - /zipmagnet <i>&lt;Magnet URL&gt;</i>
 - /zipmagnet <i>(as reply to a Magnet URL)</i>
-
 - /filemagnet <i>&lt;Magnet URL&gt;</i> - Sends videos as files
 - /filemagnet <i>(as reply to a Magnet URL)</i> - Sends videos as files''')
         return
@@ -156,12 +152,10 @@ async def directdl_cmd(client, message):
 - /directdl <i>(as reply to a Direct URL) | optional custom file name</i>
 - /direct <i>&lt;Direct URL&gt; | optional custom file name</i>
 - /direct <i>(as reply to a Direct URL) | optional custom file name</i>
-
 - /zipdirectdl <i>&lt;Direct URL&gt; | optional custom file name</i>
 - /zipdirectdl <i>(as reply to a Direct URL) | optional custom file name</i>
 - /zipdirect <i>&lt;Direct URL&gt; | optional custom file name</i>
 - /zipdirect <i>(as reply to a Direct URL) | optional custom file name</i>
-
 - /filedirectdl <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
 - /filedirectdl <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
 - /filedirect <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
@@ -231,18 +225,15 @@ async def handle_leech(client, message, gid, reply, user_id, flags):
             if not tor_name:
                 tor_name = urldecode(os.path.basename(urlparse(torrent_info['files'][0]['uris'][0]['uri']).path))
         text = f'''{html.escape(tor_name)}
-<code>{html.escape(return_progress_string(completed_length, total_length))}</code>
-
-<b>GID:</b> <code>{gid}</code>
-<b>Status:</b> {status}
-<b>Total Size:</b> {formatted_total_length}
-<b>Downloaded Size:</b> {formatted_completed_length}
-<b>Download Speed:</b> {download_speed}
-<b>ETA:</b> {calculate_eta(completed_length, total_length, start_time)}'''
+{html.escape(return_progress_string(completed_length, total_length))}
+<b>✦ Status:</b> {status} | <b>✦ ETA:</b> {calculate_eta(completed_length, total_length, start_time)}
+<b>✦ Completed:</b> {formatted_completed_length} of {formatted_total_length}
+<b>✦ GID:</b> <code>{gid}</code>
+<b>✦ Speed:</b> {download_speed}'''
         if seeders is not None:
-            text += f'\n<b>Seeders:</b> {seeders}'
+            text += f'\n<b>✦ Seeders:</b> {seeders}'
         if peers is not None:
-            text += f'\n<b>{"Peers" if seeders is not None else "Connections"}:</b> {peers}'
+            text += f'\n<b>✦ {"Peers" if seeders is not None else "Connections"}:</b> {peers}'
         if (time.time() - last_edit) > PROGRESS_UPDATE_DELAY and text != prevtext:
             await reply.edit_text(text)
             prevtext = text
@@ -294,7 +285,7 @@ async def list_leeches(client, message):
             tor_name = os.path.basename(i['files'][0]['path'])
             if not tor_name:
                 tor_name = urldecode(os.path.basename(urlparse(i['files'][0]['uris'][0]['uri']).path))
-        a = f'''<b>{html.escape(tor_name)}</b>
+        a = f'''- <b>{html.escape(tor_name)}</b>
 <code>{i['gid']}</code>\n\n'''
         futtext = text + a
         if len((await parser.parse(futtext))['message']) > 4096:
@@ -351,7 +342,6 @@ async def cancel_leech(client, message):
         await message.reply_text('You did not start this leech.')
         return
     await aria2_remove(session, gid)
-
 help_dict['leech'] = ('Leech',
 '''/torrent <i>&lt;Torrent URL or File&gt;</i>
 /torrent <i>(as reply to a Torrent URL or file)</i>
@@ -373,16 +363,19 @@ help_dict['leech'] = ('Leech',
 
 /directdl <i>&lt;Direct URL&gt; | optional custom file name</i>
 /directdl <i>(as reply to a Direct URL) | optional custom file name</i>
+
 /direct <i>&lt;Direct URL&gt; | optional custom file name</i>
 /direct <i>(as reply to a Direct URL) | optional custom file name</i>
 
 /zipdirectdl <i>&lt;Direct URL&gt; | optional custom file name</i>
 /zipdirectdl <i>(as reply to a Direct URL) | optional custom file name</i>
+
 /zipdirect <i>&lt;Direct URL&gt; | optional custom file name</i>
 /zipdirect <i>(as reply to a Direct URL) | optional custom file name</i>
 
 /filedirectdl <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
 /filedirectdl <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
+
 /filedirect <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
 /filedirect <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
 
