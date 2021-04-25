@@ -250,13 +250,12 @@ async def progress_callback(current, total, client, reply, filename, user_id):
             upload_speed = format_bytes((total - current) / (time.time() - start_time))
         else:
             upload_speed = '0 B'
-        text = f'''Uploading {html.escape(filename)}...
+            upload_speed = '0 B'
+        text = f'''<b>Uploading</b> {html.escape(filename)}
 <code>{html.escape(return_progress_string(current, total))}</code>
-
-<b>Total Size:</b> {format_bytes(total)}
-<b>Uploaded Size:</b> {format_bytes(current)}
-<b>Upload Speed:</b> {upload_speed}/s
-<b>ETA:</b> {calculate_eta(current, total, start_time)}'''
+<b>✦ Completed:</b> {format_bytes(current)} of {format_bytes(total)}
+<b>✦ Speed:</b> {upload_speed}/s
+<b>✦ ETA:</b> {calculate_eta(current, total, start_time)}'''
         if prevtext != text:
             await reply.edit_text(text)
             prevtext = text
