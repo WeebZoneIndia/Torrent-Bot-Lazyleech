@@ -109,10 +109,10 @@ async def convert_to_jpg(original, end):
 # https://stackoverflow.com/a/34325723
 def return_progress_string(current, total):
     if total:
-        filled_length = int(30 * current // total)
+        filled_length = int(20 * current // total)
     else:
         filled_length = 0
-    return '[' + '=' * filled_length + ' ' * (30 - filled_length) + ']'
+    return '[' + '█' * filled_length + '░' * (20 - filled_length) + ']'
 
 # https://stackoverflow.com/a/852718
 # https://stackoverflow.com/a/775095
