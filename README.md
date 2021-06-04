@@ -88,7 +88,7 @@ testwatermark
 ## Points To Be Noted 
 
 - This repo is fork of [Anime Leeching Group](https://t.me/joinchat/BWHQ6lb_FmSP3pxfyYolfg) Bot Leafa-chan.
-- I dont own this repo, I have just Uploaded this code on github.
+- I dont own this repo, I have just Uploaded this code on github with some modification.
 - This Repo is meant for small groups.
-- This repo is not meant to deploy in Heroku.
-- This Repo is licenced under [AGPL](https://github.com/ShinchanNohara1/Torrent-Bot-Lazyleech/blob/Master/LICENSE) that means you have to share this repo if anyone ask.
+- This repo is not meant to deploy in Heroku and never will be.
+- This Repo is licenced under [AGPL](https://github.com/ShinchanNohara1/Torrent-Bot-Lazyleech/blob/Master/LICENSE) that means you shouldn't make bot source closed source.
