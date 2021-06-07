@@ -12,7 +12,7 @@ def post_to_telegraph(a_title: str, content: str) -> str:
     post_page = post_client.post(
         title=a_title,
         author=auth_name,
-        author_url="t.me/OtakuTalk",
+        author_url="https://t.me/OtakuTalk",
         text=content,
     )
     return post_page["url"]
