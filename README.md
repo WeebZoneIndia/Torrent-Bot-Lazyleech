@@ -38,29 +38,24 @@ This is a telegram bot writen with pyrogram for leeching files on the internet t
 torrent <Torrent URL or File> or as reply to a Torrent URL or file
 ziptorrent <Torrent URL or File> or as reply to a Torrent URL or File
 filetorrent <Torrent URL or File> or as reply to a Torrent URL or File - Sends videos as files
+
 magnet <Magnet URL> or as reply to a Magnet URL
 zipmagnet <Magnet URL> or as reply to a Magnet URL
 filemagnet <Magnet URL> or as reply to a Magnet URL - Sends videos as files
+
 directdl <Direct URL> or as reply to a Direct URL | optional custom file name
 direct <Direct URL> or as reply to a Direct URL | optional custom file name
 zipdirectdl <Direct URL> or as reply to a Direct URL | optional custom file name
 zipdirect <Direct URL> or as reply to a Direct URL | optional custom file name
 filedirectdl <Direct URL> or as reply to a Direct URL | optional custom file name - Sends videos as files
 filedirect <Direct URL> or as reply to a Direct URL | optional custom file name - Sends videos as files
+
 cancel - <GID> or as reply to status message
 list - Lists your Ongoing Leeches.
 ```
 
-**Other Modules**
+**Watermark and Thumbnail Module**
 ```
-help - to get organised help message
-
-ts - [search query]
-nyaa - [search query]
-nyaasi - [search query]
-sts - [search query]
-sukebei - [search query]
-
 thumbnail <as reply to image or as a caption>
 setthumbnail <as reply to image or as a caption>
 savethumbnail <as reply to image or as a caption>
@@ -81,14 +76,28 @@ deletewatermark
 testwatermark
 ```
 
+**Other Modules**
+```
+ping - to check whether bot is up or not
+help - to get organised help message
+
+ts - [search query]
+nyaa - [search query]
+nyaasi - [search query]
+sts - [search query]
+sukebei - [search query]
+
+whatanime <as reply to media>
+mediainfo <as reply to media>
+```
+
 ## Credits 📍
 
 [@TheKneesocks](https://t.me/TheKneesocks)
 
 ## Points To Be Noted 
 
-- This repo is fork of [Anime Leeching Group](https://t.me/joinchat/BWHQ6lb_FmSP3pxfyYolfg) Bot Leafa-chan.
-- I dont own this repo, I have just Uploaded this code on github with some modification.
+- This Repo is fork of [Anime Leeching Group](https://t.me/joinchat/BWHQ6lb_FmSP3pxfyYolfg) Bot Leafa-chan.
+- This Repo is not meant to deploy in Heroku and never will be.
 - This Repo is meant for small groups.
-- This repo is not meant to deploy in Heroku and never will be.
-- This Repo is licenced under [AGPL](https://github.com/ShinchanNohara1/Torrent-Bot-Lazyleech/blob/Master/LICENSE) that means you shouldn't make bot source closed source.
+- This Repo is licenced under [AGPL](https://github.com/ShinchanNohara1/Torrent-Bot-Lazyleech/blob/Master/LICENSE).
