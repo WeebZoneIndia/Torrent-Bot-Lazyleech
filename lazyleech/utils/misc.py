@@ -1,19 +1,3 @@
-# lazyleech - Telegram bot primarily to leech from torrents and upload to Telegram
-# Copyright (c) 2021 lazyleech developers <theblankx protonmail com, meliodas_bot protonmail com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 import os
 import time
 import json
@@ -109,10 +93,10 @@ async def convert_to_jpg(original, end):
 # https://stackoverflow.com/a/34325723
 def return_progress_string(current, total):
     if total:
-        filled_length = int(20 * current // total)
+        filled_length = int(10 * current // total)
     else:
         filled_length = 0
-    return '[' + '█' * filled_length + '░' * (20 - filled_length) + ']'
+    return '[' + '█' * filled_length + ' ' * (10 - filled_length) + ']'
 
 # https://stackoverflow.com/a/852718
 # https://stackoverflow.com/a/775095
