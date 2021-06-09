@@ -16,7 +16,6 @@
 
 #Credits to https://gitlab.com/blankX
 
-from .. import ALL_CHATS, help_dict
 import os
 import time
 import html
@@ -24,45 +23,14 @@ import aiohttp
 import asyncio
 import datetime
 import tempfile
-from urllib.parse import quote as urlencode
 from decimal import Decimal
 from datetime import timedelta
 from pyrogram import Client, filters
 from pyrogram.types import Message
-
-
-session = aiohttp.ClientSession()
-progress_callback_data = {}
-
-
-def format_bytes(size):
-    size = int(size)
-    # 2**10 = 1024
-    power = 1024
-    n = 0
-    power_labels = {0: '', 1: 'K', 2: 'M', 3: 'G', 4: 'T'}
-    while size > power:
-        size /= power
-        n += 1
-    return f"{size:.2f} {power_labels[n]+'B'}"
-
-
-def return_progress_string(current, total):
-    filled_length = int(30 * current // total)
-    return '[' + '=' * filled_length + ' ' * (30 - filled_length) + ']'
-
-
-def calculate_eta(current, total, start_time):
-    if not current:
-        return '00:00:00'
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    seconds = (elapsed_time * (total / current)) - elapsed_time
-    thing = ''.join(str(timedelta(seconds=seconds)
-                        ).split('.')[:-1]).split(', ')
-    thing[-1] = thing[-1].rjust(8, '0')
-    return ', '.join(thing)
-
+from urllib.parse import quote as urlencode
+from .. import ALL_CHATS, help_dict, session
+from ..utils.misc import format_bytes, return_progress_string, calculate_eta
+from ..utils.upload_worker import upload_queue, upload_statuses, progress_callback_data, upload_waits, stop_uploads
 
 @Client.on_message(filters.command('whatanime') & filters.chat(ALL_CHATS))
 async def whatanime(c: Client, m: Message):
@@ -76,7 +44,7 @@ async def whatanime(c: Client, m: Message):
         return
     with tempfile.TemporaryDirectory() as tempdir:
         reply = await m.reply_text('Downloading...')
-        path = await c.download_media(media, file_name=os.path.join(tempdir, '0'), progress=progress_callback, progress_args=(reply,))
+        path = await c.download_media(media, file_name=os.path.join(tempdir, '0'), progress=progress_callback_data, progress_args=(reply,))
         new_path = os.path.join(tempdir, '1.png')
         proc = await asyncio.create_subprocess_exec('ffmpeg', '-i', path, '-frames:v', '1', new_path)
         await proc.communicate()
@@ -130,37 +98,11 @@ async def whatanime(c: Client, m: Message):
                         await reply.reply_text('Cannot send preview :/')
             await asyncio.gather(reply.edit_text(text, disable_web_page_preview=True), _send_preview())
 
-
-async def progress_callback(current, total, reply):
-    message_identifier = (reply.chat.id, reply.message_id)
-    last_edit_time, prevtext, start_time = progress_callback_data.get(
-        message_identifier, (0, None, time.time()))
-    if current == total:
-        try:
-            progress_callback_data.pop(message_identifier)
-        except KeyError:
-            pass
-    elif (time.time() - last_edit_time) > 1:
-        if last_edit_time:
-            download_speed = format_bytes(
-                (total - current) / (time.time() - start_time))
-        else:
-            download_speed = '0 B'
-        text = f'''Downloading...
-<code>{return_progress_string(current, total)}</code>
-<b>Total Size:</b> {format_bytes(total)}
-<b>Downladed Size:</b> {format_bytes(current)}
-<b>Download Speed:</b> {download_speed}/s
-<b>ETA:</b> {calculate_eta(current, total, start_time)}'''
-        if prevtext != text:
-            await reply.edit_text(text)
-            prevtext = text
-            last_edit_time = time.time()
-            progress_callback_data[message_identifier] = last_edit_time, prevtext, start_time
             
 help_dict['extras'] = ('Extras',
 '''/mediainfo <i>[replied media]</i> 
 /whatanime <i>[replied media]</i>
+
 <b>Credits</b>
 - @TheKneesocks for /whatanime
 - @deleteduser420 for /mediainfo''')
