@@ -4,3 +4,4 @@ tgcrypto
 natsort
 aiohttp
 html-telegraph-poster>=0.2.31
+psutil 
