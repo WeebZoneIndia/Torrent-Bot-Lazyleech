@@ -95,7 +95,7 @@ async def _upload_worker(client, message, reply, torrent_info, user_id, flags):
                 files[filepath] = filename
         for filepath in natsorted(files):
             sent_files.extend(await _upload_file(client, message, reply, files[filepath], filepath, ForceDocumentFlag in flags))
-    text = 'Files:\n'
+    text = '✨ #Files:\n'
     parser = pyrogram_html.HTML(client)
     quote = None
     first_index = None
@@ -250,12 +250,8 @@ async def progress_callback(current, total, client, reply, filename, user_id):
             upload_speed = format_bytes((total - current) / (time.time() - start_time))
         else:
             upload_speed = '0 B'
-            upload_speed = '0 B'
-        text = f'''<b>Uploading</b> {html.escape(filename)}
-<code>{html.escape(return_progress_string(current, total))}</code>
-<b>✦ Completed:</b> {format_bytes(current)} of {format_bytes(total)}
-<b>✦ Speed:</b> {upload_speed}/s
-<b>✦ ETA:</b> {calculate_eta(current, total, start_time)}'''
+        text = f'''<b>Uploading</b> <code>{html.escape(filename)}</code>
+<code>{html.escape(return_progress_string(current, total))}</code> {format_bytes(current)} of {format_bytes(total)} at {upload_speed}/s, ETA: {calculate_eta(current, total, start_time)}'''
         if prevtext != text:
             await reply.edit_text(text)
             prevtext = text
