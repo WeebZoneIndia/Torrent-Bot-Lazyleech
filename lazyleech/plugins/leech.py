@@ -224,16 +224,14 @@ async def handle_leech(client, message, gid, reply, user_id, flags):
             tor_name = os.path.basename(torrent_info['files'][0]['path'])
             if not tor_name:
                 tor_name = urldecode(os.path.basename(urlparse(torrent_info['files'][0]['uris'][0]['uri']).path))
-        text = f'''{html.escape(tor_name)}
-{html.escape(return_progress_string(completed_length, total_length))}
-<b>✦ Status:</b> {status} | <b>✦ ETA:</b> {calculate_eta(completed_length, total_length, start_time)}
-<b>✦ Completed:</b> {formatted_completed_length} of {formatted_total_length}
-<b>✦ GID:</b> <code>{gid}</code>
-<b>✦ Speed:</b> {download_speed}'''
-        if seeders is not None:
-            text += f'\n<b>✦ Seeders:</b> {seeders}'
+        text = f'''<b>Downloading</b> - <code>{html.escape(tor_name)}</code>
+<code>{html.escape(return_progress_string(completed_length, total_length))}</code> {formatted_completed_length} of {formatted_total_length} at {download_speed}, ETA: {calculate_eta(completed_length, total_length, start_time)}
+• GID: <code>{gid}</code>
+'''
         if peers is not None:
-            text += f'\n<b>✦ {"Peers" if seeders is not None else "Connections"}:</b> {peers}'
+            text += f'• {"P" if seeders is not None else "Connections"}: {peers}'
+        if seeders is not None:
+            text += f' | S: {seeders}'
         if (time.time() - last_edit) > PROGRESS_UPDATE_DELAY and text != prevtext:
             await reply.edit_text(text)
             prevtext = text
@@ -342,6 +340,7 @@ async def cancel_leech(client, message):
         await message.reply_text('You did not start this leech.')
         return
     await aria2_remove(session, gid)
+    
 help_dict['leech'] = ('Leech',
 '''/torrent <i>&lt;Torrent URL or File&gt;</i>
 /torrent <i>(as reply to a Torrent URL or file)</i>
