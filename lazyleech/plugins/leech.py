@@ -70,8 +70,10 @@ async def torrent_cmd(client, message):
         await message.reply_text('''Usage:
 - /torrent <i>&lt;Torrent URL or File&gt;</i>
 - /torrent <i>(as reply to a Torrent URL or file)</i>
+
 - /ziptorrent <i>&lt;Torrent URL or File&gt;</i>
 - /ziptorrent <i>(as reply to a Torrent URL or File)</i>
+
 - /filetorrent <i>&lt;Torrent URL or File&gt;</i> - Sends videos as files
 - /filetorrent <i>(as reply to a Torrent URL or file)</i> - Sends videos as files''')
         return
@@ -111,8 +113,10 @@ async def magnet_cmd(client, message):
         await message.reply_text('''Usage:
 - /magnet <i>&lt;Magnet URL&gt;</i>
 - /magnet <i>(as reply to a Magnet URL)</i>
+
 - /zipmagnet <i>&lt;Magnet URL&gt;</i>
 - /zipmagnet <i>(as reply to a Magnet URL)</i>
+
 - /filemagnet <i>&lt;Magnet URL&gt;</i> - Sends videos as files
 - /filemagnet <i>(as reply to a Magnet URL)</i> - Sends videos as files''')
         return
@@ -152,10 +156,12 @@ async def directdl_cmd(client, message):
 - /directdl <i>(as reply to a Direct URL) | optional custom file name</i>
 - /direct <i>&lt;Direct URL&gt; | optional custom file name</i>
 - /direct <i>(as reply to a Direct URL) | optional custom file name</i>
+
 - /zipdirectdl <i>&lt;Direct URL&gt; | optional custom file name</i>
 - /zipdirectdl <i>(as reply to a Direct URL) | optional custom file name</i>
 - /zipdirect <i>&lt;Direct URL&gt; | optional custom file name</i>
 - /zipdirect <i>(as reply to a Direct URL) | optional custom file name</i>
+
 - /filedirectdl <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
 - /filedirectdl <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
 - /filedirect <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
@@ -340,7 +346,7 @@ async def cancel_leech(client, message):
         await message.reply_text('You did not start this leech.')
         return
     await aria2_remove(session, gid)
-    
+
 help_dict['leech'] = ('Leech',
 '''/torrent <i>&lt;Torrent URL or File&gt;</i>
 /torrent <i>(as reply to a Torrent URL or file)</i>
@@ -362,19 +368,16 @@ help_dict['leech'] = ('Leech',
 
 /directdl <i>&lt;Direct URL&gt; | optional custom file name</i>
 /directdl <i>(as reply to a Direct URL) | optional custom file name</i>
-
 /direct <i>&lt;Direct URL&gt; | optional custom file name</i>
 /direct <i>(as reply to a Direct URL) | optional custom file name</i>
 
 /zipdirectdl <i>&lt;Direct URL&gt; | optional custom file name</i>
 /zipdirectdl <i>(as reply to a Direct URL) | optional custom file name</i>
-
 /zipdirect <i>&lt;Direct URL&gt; | optional custom file name</i>
 /zipdirect <i>(as reply to a Direct URL) | optional custom file name</i>
 
 /filedirectdl <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
 /filedirectdl <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
-
 /filedirect <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
 /filedirect <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
 
