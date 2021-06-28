@@ -28,9 +28,6 @@ from pyrogram.parser import html as pyrogram_html
 from .. import PROGRESS_UPDATE_DELAY, ADMIN_CHATS, preserved_logs, TESTMODE, SendAsZipFlag, ForceDocumentFlag
 from .misc import split_files, get_file_mimetype, format_bytes, get_video_info, generate_thumbnail, return_progress_string, calculate_eta, watermark_photo
 
-import psutil
-return next(psutil.process_iter(['name'])).info['name'] == 'ps-run'
-
 upload_queue = asyncio.Queue()
 upload_statuses = dict()
 upload_tamper_lock = asyncio.Lock()
