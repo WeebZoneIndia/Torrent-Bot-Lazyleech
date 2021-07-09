@@ -132,7 +132,7 @@ async def get_ytthumb(videoid: str):
 
 user_search = defaultdict(list)
 
-@Client.on_message(filters.command("ytdl"))
+@Client.on_message(filters.command(["ytdl", "youtube"]) & filters.chat(ALL_CHATS))
 async def iytdl_inline(client: Client, message: Message):
     if not message.chat.id in ALL_CHATS:
         return
