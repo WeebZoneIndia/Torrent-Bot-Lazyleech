@@ -54,7 +54,6 @@ from pyrogram.types import (
 from wget import download
 from youtube_dl.utils import DownloadError, ExtractorError, GeoRestrictedError
 from youtubesearchpython import VideosSearch
-from lazyleech.utils.upload_worker import duration, width, height
 
 BASE_YT_URL = "https://www.youtube.com/watch?v="
 YOUTUBE_REGEX = comp_regex(
@@ -253,9 +252,8 @@ async def ytdl_download_callback(client: Client, c_q: CallbackQuery):
                     media=str(Path(_fpath)),
                     caption=f"<a href = '{yt_url}'>{Path(_fpath).name}</a>",
                     thumb=thumb_pic,
-                    duration=duration,
-                    width=width,
-                    height=height,
+                    width=1280,
+                    height=720,
                     parse_mode=None
                 )
             ),
