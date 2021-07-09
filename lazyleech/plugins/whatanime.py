@@ -100,9 +100,10 @@ async def whatanime(c: Client, m: Message):
 
             
 help_dict['extras'] = ('Extras',
-'''/mediainfo <i>[replied media]</i> 
+'''<b>Miscs</b>
+/mediainfo <i>[replied media]</i> 
 /whatanime <i>[replied media]</i>
 
-<b>Credits</b>
-- @TheKneesocks for /whatanime
-- @deleteduser420 for /mediainfo''')
+<b>Youtube-DL</b>
+/ytdl <i>Youtube Link</i>
+/youtube <i>Youtube Link</i>''')

@@ -1,7 +1,15 @@
+aiohttp
+aiohttp[speedups]>=3.7.3
 feedparser
 pyrogram
 tgcrypto
 natsort
-aiohttp
+requests
+bs4
+motor
 html-telegraph-poster>=0.2.31
 pykeyboard==0.1.2
+wget>=3.2
+youtube-search-python
+ujson
+git+https://github.com/ytdl-org/youtube-dl
