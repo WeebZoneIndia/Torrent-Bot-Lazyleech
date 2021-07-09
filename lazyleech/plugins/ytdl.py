@@ -241,6 +241,13 @@ async def ytdl_download_callback(client: Client, c_q: CallbackQuery):
             thumb_pic = _path
         else:
             _fpath = _path
+    try:
+        metadata = extractMetadata(createParser(new_file_location))
+        duration = 0
+        if metadata.has("duration"):
+           duration = metadata.get('duration').seconds
+    except:
+        duration = 0
     if not thumb_pic and downtype == "v":
         thumb_pic = str(
             await run_in_thread(download)(await get_ytthumb(yt_code))
@@ -253,8 +260,7 @@ async def ytdl_download_callback(client: Client, c_q: CallbackQuery):
                     caption=f"<a href = '{yt_url}'>{Path(_fpath).name}</a>",
                     thumb=thumb_pic,
                     width=1280,
-                    height=720,
-                    parse_mode=None
+                    height=720
                 )
             ),
         )
