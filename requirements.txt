@@ -6,6 +6,7 @@ tgcrypto
 natsort
 requests
 bs4
+motor
 html-telegraph-poster>=0.2.31
 pykeyboard==0.1.2
 wget>=3.2
