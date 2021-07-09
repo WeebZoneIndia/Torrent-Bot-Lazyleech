@@ -259,6 +259,7 @@ async def ytdl_download_callback(client: Client, c_q: CallbackQuery):
                     media=str(Path(_fpath)),
                     caption=f"<a href = '{yt_url}'>{Path(_fpath).name}</a>",
                     thumb=thumb_pic,
+                    duration=duration,
                     width=1280,
                     height=720
                 )
