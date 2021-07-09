@@ -223,7 +223,7 @@ async def ytdl_download_callback(client: Client, c_q: CallbackQuery):
     yt_url = BASE_YT_URL + yt_code
     await c_q.edit_message_text(
         text=(
-            f"**⬇️ Downloading {media_type} ...**"
+            f"<b>⬇️ Downloading {media_type} ...</b>"
             f"\n\n🔗  <b><a href='{yt_url}'>Link</a></b>\n🆔  <b>Format Code</b> : {disp_str}"
         ),
     )
