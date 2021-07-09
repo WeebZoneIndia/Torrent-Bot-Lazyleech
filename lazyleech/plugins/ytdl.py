@@ -149,7 +149,6 @@ async def iytdl_inline(client: Client, message: Message):
     if not input_url:
         x = await message.reply_text("Input or reply to a valid youtube URL")
         await asyncio.sleep(5)
-        await x.delete()
         return
     x = await message.reply_text(f"🔎 Searching Youtube for: <code>'{input_url}'</code>")
     input_url = input_url.strip()
@@ -160,7 +159,6 @@ async def iytdl_inline(client: Client, message: Message):
         if len(resp) == 0:
             await x.edit_text(f'No Results found for "{input_url}"')
             await asyncio.sleep(5)
-            await x.delete()
             return
         outdata = await result_formatter(resp)
         key_ = rand_key()
