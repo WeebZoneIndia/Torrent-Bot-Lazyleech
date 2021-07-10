@@ -29,7 +29,9 @@ This is a telegram bot writen with pyrogram for leeching files on the internet t
 - Nyaa.si Search Support.
 - Upload as zip, streamable, document.
 - Can List All your Ongoing Leeches.
-- Docker support.
+- Advanced YTDL
+- MediaInfo
+- WhatAnime
 
 ## Bot Commands
 
@@ -89,11 +91,12 @@ sukebei - [search query]
 
 whatanime <as reply to media>
 mediainfo <as reply to media>
+ytdl <search query / YouTube link>
 ```
 
-## Credits 📍
+## Credits 📕
 
-[@TheKneesocks](https://t.me/TheKneesocks)
+[@TheKneesocks](https://t.me/TheKneesocks) 
 
 ## Points To Be Noted 
 
