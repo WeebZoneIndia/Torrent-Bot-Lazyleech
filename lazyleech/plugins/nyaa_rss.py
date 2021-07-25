@@ -24,7 +24,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from motor.core import AgnosticClient, AgnosticDatabase, AgnosticCollection
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from .. import app, ADMIN_CHATS
-from .leech import initiate_torrent
+from pyrogram import Client, filters
 
 rsslink = list(filter(lambda x: x, map(str, os.environ.get("NYAA_RSS_LINKS", "https://nyaa.si/?page=rss&c=0_0&f=0&u=SmallSizedAnimations").split(' '))))
 
@@ -58,10 +58,8 @@ if os.environ.get('DB_URL'):
                 await A.insert_one({'_id': str(da.find('item').find('title')), 'site': i})
         for i in cr:
             for ii in ADMIN_CHATS:
-                msg = await app.send_message(ii, f"New anime uploaded\n\n{i[0]}\n{i[1]}")
-                flags = ()
-                await initiate_torrent(app, msg, i[1], flags)
+                await app.send_message(ii, f"New anime uploaded\n\n{i[0]}\n{i[1]}")
 
     scheduler = AsyncIOScheduler()
-    scheduler.add_job(rss_parser, "interval", minutes=int(os.environ.get('RSS_RECHECK_INTERVAL', 5)), max_instances=5)
+    scheduler.add_job(rss_parser, "interval", minutes=int(os.environ.get('RSS_RECHECK_INTERVAL', 45)), max_instances=5)
     scheduler.start()
