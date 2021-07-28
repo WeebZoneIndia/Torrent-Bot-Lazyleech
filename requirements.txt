@@ -5,10 +5,12 @@ pyrogram
 tgcrypto
 natsort
 requests
+apscheduler
 bs4
 motor
 html-telegraph-poster>=0.2.31
 pykeyboard==0.1.2
+dnspython
 wget>=3.2
 youtube-search-python
 ujson
