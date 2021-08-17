@@ -36,7 +36,7 @@ cancel - <GID> or as reply to status message
 list - Lists your Ongoing Leeches.
 ```
 
-**Watermark and Thumbnail Module**
+**Thumbnail and Watermark Module**
 ```
 thumbnail <as reply to image or as a caption>
 setthumbnail <as reply to image or as a caption>
