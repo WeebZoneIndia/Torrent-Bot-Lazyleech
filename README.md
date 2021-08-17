@@ -1,17 +1,7 @@
-<p align="center">
-  <img src="https://telegra.ph/file/1e1f6119d27511337af27.jpg">
-</p>
-
 # Torrent Bot LazyLeech 
+A Telegram Torrent Leech Bot Based on Pyrogram.
 
-<p align="center">
-“	A Telegram Torrent Leeching Bot by Some Weebs ” 
-</p>
-
-# What is this repo about?
-This is a telegram bot writen with pyrogram for leeching files on the internet to Telegram.
-
-[Bot Demo](https://t.me/joinchat/I0r_UQNiPHdlYWFl)
+[Press Here for Bot Demo](https://t.me/joinchat/I0r_UQNiPHdlYWFl)
 
 # Features
 - Leeching direct download links, torrent links and magnet links.
