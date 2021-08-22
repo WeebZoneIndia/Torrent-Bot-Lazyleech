@@ -29,8 +29,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from urllib.parse import quote as urlencode
 from .. import ALL_CHATS, help_dict, session
-from ..utils.misc import format_bytes, return_progress_string, calculate_eta
-from ..utils.upload_worker import upload_queue, upload_statuses, progress_callback_data, upload_waits, stop_uploads
+from ..utils.upload_worker import progress_callback_data
 
 @Client.on_message(filters.command('whatanime') & filters.chat(ALL_CHATS))
 async def whatanime(c: Client, m: Message):

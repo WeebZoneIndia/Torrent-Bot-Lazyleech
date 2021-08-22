@@ -18,9 +18,9 @@ import os
 import time
 import html
 import asyncio
-
-from pyrogram import Client, filters
 from .. import ALL_CHATS
+from pyrogram import Client, filters
+from ..utils.upload_worker import progress_callback_data
 
 @Client.on_message(filters.command('rename') & filters.chat(ALL_CHATS))
 async def rename(client, message):
@@ -42,19 +42,11 @@ async def rename(client, message):
         await message.reply_text('Media required')
         return
     msg = await message.reply_text('Added to Queue')
-    data = []
-    data.append(message)
     filepath = os.path.join(str(message.from_user.id), name)
     await msg.edit_text('<code>Downloading...</code>')
-    await download_message.download(file_name=filepath)
+    await download_message.download(file_name=filepath, progress=progress_callback, progress_args=(reply, 'Downloading', True))
     await asyncio.sleep(5)
     await msg.edit_text('<code>Uploading...</code>')
-    await message.reply_document(filepath, caption=name)
+    await message.reply_document(filepath, caption=name, progress=progress_callback, progress_args=(msg, 'Uploading', False))
     await msg.delete()
     os.remove(filepath)
-    await on_task_complete(data)
-
-async def on_task_complete(data):
-    del data[0]
-    if len(data) > 0:
-        await rename(data[0])
