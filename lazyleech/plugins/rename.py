@@ -47,14 +47,14 @@ async def rename(client, message):
     if download_message is None:
         await message.reply_text('Media required')
         return
-    await message.reply_text('Added to Queue')
+    msg = await message.reply_text('Added to Queue')
     data = []
     data.append(message)
     filepath = os.path.join(str(message.from_user.id), name)
-    await message.reply_text('Downloading...')
+    await msg.edit_text('Downloading...')
     await download_message.download(file_name=filepath)
     await asyncio.sleep(5)
-    await message.reply_text('Uploading...')
+    await msg.edit_text('Uploading...')
     thumb = os.path.join(str(message.from_user.id), name)
     if doc is True:
         await message.reply_document(filepath, caption=name)
