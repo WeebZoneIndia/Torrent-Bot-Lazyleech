@@ -24,45 +24,18 @@ from .. import ALL_CHATS
 
 @Client.on_message(filters.command(['rename', 'renamefile']) & filters.chat(ALL_CHATS))
 async def rename(client, message):
-    text = (message.text or message.caption).split(None, 1)
-    command = text.pop(0).lower()
-    if 'file' in command:
-        doc = True
-    else:
-        doc = False
     name = message.text.split(None, 1)[1]
-    available_media = ("audio", "document", "photo", "sticker", "animation", "video", "voice", "video_note")
-    download_message = None
-    for i in available_media:
-        if getattr(message, i, None):
-            download_message = message
-            break
-    else:
-        reply = message.reply_to_message
-        if not getattr(reply, 'empty', True):
-            for i in available_media:
-                if getattr(reply, i, None):
-                    download_message = reply
-                    break
-    if download_message is None:
-        await message.reply_text('Media required')
-        return
     msg = await message.reply_text('Added to Queue')
     data = []
     data.append(message)
     filepath = os.path.join(str(message.from_user.id), name)
-    await msg.edit_text('Downloading...')
-    await download_message.download(file_name=filepath)
+    await msg.edit_text('<code>Downloading...</code>')
+    await message.reply.download(file_name=filepath)
     await asyncio.sleep(5)
-    await msg.edit_text('Uploading...')
-    thumb = os.path.join(str(message.from_user.id), name)
-    if doc is True:
-        await message.reply_document(filepath, caption=name)
-    else:
-        if message.video or (message.document and message.document.mime_type.startswith("video/")):
-            duration = message.video.duration if ((message.document is None) and (message.video.thumbs is not None)) else 0
-            await message.reply_video(filepath, caption=name, thumb=thumb, duration=duration, width=1280, height=720)
-            os.remove(filepath)
+    await msg.edit_text('<code>Uploading...</code>')
+    await message.reply_document(filepath, caption=name)
+    await msg.delete()
+    os.remove(filepath)
     await on_task_complete(data)
 
 async def on_task_complete(data):
