@@ -28,6 +28,7 @@ from .. import ALL_CHATS
 
 @Client.on_message(filters.command('rename') & filters.chat(ALL_CHATS))
 async def rename(client, message):
+    c_time = time.time()
     name = message.text.split(None, 1)[1]
     available_media = ("audio", "document", "photo", "sticker", "animation", "video", "voice", "video_note")
     download_message = None
