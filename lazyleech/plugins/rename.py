@@ -14,14 +14,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import asyncio
+import html
+import math
 import os
 import re
-import math
 import time
-import html
-import asyncio
-from .. import ALL_CHATS
+
 from pyrogram import Client, filters
+
+from .. import ALL_CHATS
+
 
 @Client.on_message(filters.command('rename') & filters.chat(ALL_CHATS))
 async def rename(client, message):
@@ -63,19 +66,29 @@ async def rename(client, message):
         elapsed_time = round(diff) * 1000
         time_to_completion = round((total - current) / speed) * 1000
         estimated_total_time = elapsed_time + time_to_completion
+
         elapsed_time = TimeFormatter(milliseconds=elapsed_time)
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
+
         progress = "[{0}{1}] \n".format(
             ''.join(["█" for i in range(math.floor(percentage / 5))]),
-            ''.join([" " for i in range(10 - math.floor(percentage / 5))]))
+            ''.join([" " for i in range(10 - math.floor(percentage / 5))])
+        )
+
         tmp = progress + PROGRESS.format(
             humanbytes(current),
             humanbytes(total),
             humanbytes(speed),
-            estimated_total_time if estimated_total_time != '' else "0 s")
+            estimated_total_time if estimated_total_time != '' else "0 s"
+        )
         try:
             await message.edit_text(
-                text="{}\n\n {}".format(ud_type, tmp), parse_mode='markdown')
+                text="{}\n\n {}".format(
+                    ud_type,
+                    tmp
+                ),
+                parse_mode='markdown'
+            )
         except:
             pass
 
