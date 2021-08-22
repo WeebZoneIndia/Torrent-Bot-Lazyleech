@@ -22,10 +22,10 @@ import asyncio
 from pyrogram import Client, filters
 from .. import ALL_CHATS
 
-@Client.on_message(filters.command('rename') & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command['rename', 'renamefile']) & filters.chat(ALL_CHATS))
 async def rename(client, message):
-    data = []
-    data.append(message)
+    text = (message.text or message.caption).split(None, 1)
+    command = text.pop(0).lower()
     if 'file' in command:
         doc = True
     else:
@@ -35,6 +35,8 @@ async def rename(client, message):
         await message.reply_text('code 100')
         return
     await message.reply_text('Added to Queue')
+    data = []
+    data.append(message)
     filepath = os.path.join(str(user_id), name)
     await message.reply_text('Downloading...')
     await message.download(file_name=filepath)
