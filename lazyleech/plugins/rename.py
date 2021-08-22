@@ -22,7 +22,7 @@ import asyncio
 from pyrogram import Client, filters
 from .. import ALL_CHATS
 
-@Client.on_message(filters.command['rename', 'renamefile']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['rename', 'renamefile']) & filters.chat(ALL_CHATS))
 async def rename(client, message):
     text = (message.text or message.caption).split(None, 1)
     command = text.pop(0).lower()
