@@ -46,11 +46,11 @@ async def rename(client, message):
     if download_message is None:
         await message.reply_text('Media required')
         return
-    msg = await message.reply_text('<code>Downloading</code>')
+    msg = await message.reply_text('<code>Downloading...</code>')
     filepath = os.path.join(str(message.from_user.id), name)
     await download_message.download(filepath)
     await asyncio.sleep(5)
-    await msg.edit_text('<code>Uploading</code>')
+    await msg.edit_text('<code>Uploading...</code>')
     await message.reply_document(filepath, caption=name)
     await msg.delete()
     os.remove(filepath)
