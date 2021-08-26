@@ -105,4 +105,8 @@ help_dict['extras'] = ('Extras',
 
 <b>Youtube-DL</b>
 /ytdl <i>Youtube Link</i>
-/youtube <i>Youtube Link</i>''')
+/youtube <i>Youtube Link</i>
+
+<b>Rename</b>
+/rename <i>[replied media]</i> 
+/filerename <i>[replied media]</i> ''')
