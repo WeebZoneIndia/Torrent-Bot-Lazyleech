@@ -23,11 +23,13 @@ import time
 
 from pyrogram import Client, filters
 
-from .. import ALL_CHATS
+from .. import ALL_CHATS, ForceDocumentFlag, PROGRESS_UPDATE_DELAY
+from ..utils.upload_worker import _upload_file
 
 
 @Client.on_message(filters.command('rename') & filters.chat(ALL_CHATS))
 async def rename(client, message):
+    flags = (ForceDocumentFlag,)
     c_time = time.time()
     name = message.text.split(None, 1)[1]
     available_media = ("audio", "document", "photo", "sticker", "animation", "video", "voice", "video_note")
@@ -49,8 +51,7 @@ async def rename(client, message):
     msg = await message.reply_text('<code>Downloading...</code>')
     filepath = os.path.join(str(message.from_user.id), name)
     await download_message.download(filepath)
-    await asyncio.sleep(5)
-    await msg.edit_text('<code>Uploading...</code>')
-    await message.reply_document(filepath, caption=name)
+    await asyncio.sleep(PROGRESS_UPDATE_DELAY)
+    await _upload_file(client, message, msg, name, filepath, ForceDocumentFlag in flags)
     await msg.delete()
     os.remove(filepath)
