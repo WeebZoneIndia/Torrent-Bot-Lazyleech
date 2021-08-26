@@ -23,13 +23,18 @@ import time
 
 from pyrogram import Client, filters
 
-from .. import ALL_CHATS, ForceDocumentFlag, PROGRESS_UPDATE_DELAY
+from .. import ALL_CHATS, ForceDocumentFlag, SendAsZipFlag, PROGRESS_UPDATE_DELAY
 from ..utils.upload_worker import _upload_file
 
 
-@Client.on_message(filters.command('rename') & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['rename', 'filerename']) & filters.chat(ALL_CHATS))
 async def rename(client, message):
-    flags = (ForceDocumentFlag,)
+    text = (message.text or message.caption).split(None, 1
+    command = text.pop(0).lower()
+    if 'file' in command:
+        flags = (ForceDocumentFlag,)
+    else:
+        flags = ()
     c_time = time.time()
     name = message.text.split(None, 1)[1]
     available_media = ("audio", "document", "photo", "sticker", "animation", "video", "voice", "video_note")
@@ -48,10 +53,11 @@ async def rename(client, message):
     if download_message is None:
         await message.reply_text('Media required')
         return
-    msg = await message.reply_text('<code>Downloading...</code>')
     filepath = os.path.join(str(message.from_user.id), name)
+    msg = await message.reply_text('Downloading...')
     await download_message.download(filepath)
+    await msg.edit_text("Uploading...")
     await asyncio.sleep(PROGRESS_UPDATE_DELAY)
     await _upload_file(client, message, msg, name, filepath, ForceDocumentFlag in flags)
-    await msg.delete()
+    await msg.edit_text("Renamed Files Successfully")
     os.remove(filepath)
