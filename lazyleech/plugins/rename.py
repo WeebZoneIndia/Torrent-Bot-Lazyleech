@@ -16,6 +16,7 @@
 
 import asyncio
 import html
+import time
 import math
 import os
 import re
@@ -51,7 +52,7 @@ async def rename(client, message):
     if download_message is None:
         await message.reply_text('Media required')
         return
-    filepath = os.path.join(name)
+    filepath = os.path.join(str(message.from_user.id), str(time.time()))
     msg = await message.reply_text('Downloading...')
     await download_message.download(filepath)
     await msg.edit_text("Uploading...")
