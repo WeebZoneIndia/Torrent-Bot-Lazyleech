@@ -1,37 +1,17 @@
-<p align="center">
-  <img src="https://telegra.ph/file/1e1f6119d27511337af27.jpg">
-</p>
+# Torrent Bot LazyLeech 
+A Telegram Torrent Leech Bot Based on Pyrogram.
 
-# LazyLeech 
-
-<p align="center">
-“	Telegram Torrent Leeching Bot by Some Weebs ” 
-</p>
-
-# Table of Content
-- [WHAT IS THIS REPO ABOUT ?](#what-is-this-repo-about)
-- [FEATURES](#features)
-- [BOT COMMANDS](#bot-commands)
-- [TEST THE BOT (DEMO)](https://t.me/joinchat/HC7YmklXMSRPH3N2)
-- [CREDITS](#credits-)
-- [POINTS TO BE NOTED](#points-to-be-noted)
-
-
-# What is this repo about?
-This is a telegram bot writen with pyrogram for leeching files on the internet to Telegram.
-
-[Bot Demo](https://t.me/joinchat/I0r_UQNiPHdlYWFl)
+[Press Here for Bot Demo](https://t.me/joinchat/I0r_UQNiPHdlYWFl)
 
 # Features
-- Leeching direct download links | Torrent | Magnets.
+- Leeching direct download links, torrent links and magnet links.
 - Thumbnail and Watermark Support.
-- Torrent/Magnet Auto Detect Support.
-- Nyaa.si Search Support.
+- Torrent/Magnet Auto Detect.
+- Nyaa.si Search.
 - Upload as zip, streamable, document.
 - Can List All your Ongoing Leeches.
-- Advanced YTDL
-- MediaInfo
-- WhatAnime
+- High Speed Upload.
+- Advanced YTDL.
 
 ## Bot Commands
 
@@ -56,7 +36,7 @@ cancel - <GID> or as reply to status message
 list - Lists your Ongoing Leeches.
 ```
 
-**Watermark and Thumbnail Module**
+**Thumbnail and Watermark Module**
 ```
 thumbnail <as reply to image or as a caption>
 setthumbnail <as reply to image or as a caption>
@@ -99,8 +79,6 @@ ytdl <search query / YouTube link>
 [@TheKneesocks](https://t.me/TheKneesocks) 
 
 ## Points To Be Noted 
-
 - This Repo is fork of [Anime Leeching Group](https://t.me/joinchat/BWHQ6lb_FmSP3pxfyYolfg) Bot Leafa-chan.
 - This Repo is not meant to deploy in Heroku and never will be.
-- This Repo is meant for small groups.
 - This Repo is licenced under [AGPL](https://github.com/ShinchanNohara1/Torrent-Bot-Lazyleech/blob/Master/LICENSE).
