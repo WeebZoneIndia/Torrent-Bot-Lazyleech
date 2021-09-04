@@ -29,7 +29,7 @@ from ..utils.upload_worker import _upload_file
 
 @Client.on_message(filters.command(['rename', 'filerename']) & filters.chat(ALL_CHATS))
 async def rename(client, message):
-    text = message.command
+    text = (message.text or message.caption).split(None, 1)
     command = text.pop(0).lower()
     if 'file' in command:
         flags = (ForceDocumentFlag,)
