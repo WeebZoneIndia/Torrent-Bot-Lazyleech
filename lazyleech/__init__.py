@@ -19,6 +19,7 @@ import logging
 import aiohttp
 from io import BytesIO, StringIO
 from pyrogram import Client
+from dotenv import load_dotenv
 
 if os.path.exists('lazyleech/config.env'):
   load_dotenv('lazyleech/config.env')
