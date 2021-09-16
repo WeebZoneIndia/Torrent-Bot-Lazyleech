@@ -20,6 +20,9 @@ import aiohttp
 from io import BytesIO, StringIO
 from pyrogram import Client
 
+if os.path.exists('lazyleech/config.env'):
+  load_dotenv('lazyleech/config.env')
+
 API_ID = os.environ.get('API_ID')
 API_HASH = os.environ.get('API_HASH')
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
