@@ -61,5 +61,5 @@ if os.environ.get('DB_URL'):
                 await app.send_message(ii, f"New Anime Released!\n\n{i[0]}\n{i[1]}")
 
     scheduler = AsyncIOScheduler()
-    scheduler.add_job(rss_parser, "interval", minutes=int(os.environ.get('RSS_RECHECK_INTERVAL', 10)), max_instances=5)
+    scheduler.add_job(rss_parser, "interval", minutes=int(os.environ.get('RSS_RECHECK_INTERVAL', 180)), max_instances=5)
     scheduler.start()
