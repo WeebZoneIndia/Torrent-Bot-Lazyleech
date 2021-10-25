@@ -58,8 +58,8 @@ if os.environ.get('DB_URL'):
                 await A.insert_one({'_id': str(da.find('item').find('title')), 'site': i})
         for i in cr:
             for ii in ADMIN_CHATS:
-                await app.send_message(ii, f"New Anime Released!\n\n{i[0]}\n{i[1]}")
+                await app.send_message(ii, f"{i[0]}\n{i[1]}")
 
     scheduler = AsyncIOScheduler()
-    scheduler.add_job(rss_parser, "interval", minutes=int(os.environ.get('RSS_RECHECK_INTERVAL', 180)), max_instances=5)
+    scheduler.add_job(rss_parser, "interval", minutes=int(os.environ.get('RSS_RECHECK_INTERVAL', 30)), max_instances=5)
     scheduler.start()
