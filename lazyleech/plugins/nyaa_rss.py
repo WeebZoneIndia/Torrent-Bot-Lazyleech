@@ -26,7 +26,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from .. import app, ADMIN_CHATS
 from pyrogram import Client, filters
 
-rsslink = list(filter(lambda x: x, map(str, os.environ.get("NYAA_RSS_LINKS", "https://nyaa.si/?page=rss&c=0_0&f=0&u=SmallSizedAnimations").split(' '))))
+rsslink = list(filter(lambda x: x, map(str, os.environ.get("NYAA_RSS_LINKS", "https://nyaa.si/?page=rss&c=0_0&f=0&u=AkihitoSubsWeeklies").split(' '))))
 
 if os.environ.get('DB_URL'):
     DB_URL = os.environ.get('DB_URL')
@@ -58,7 +58,7 @@ if os.environ.get('DB_URL'):
                 await A.insert_one({'_id': str(da.find('item').find('title')), 'site': i})
         for i in cr:
             for ii in ADMIN_CHATS:
-                await app.send_message(ii, f"{i[0]}\n{i[1]}")
+                await app.send_message(ii, f"#Nyaa_RSS\n{i[0]}\n<code>{i[1]}</code>")
 
     scheduler = AsyncIOScheduler()
     scheduler.add_job(rss_parser, "interval", minutes=int(os.environ.get('RSS_RECHECK_INTERVAL', 30)), max_instances=5)
